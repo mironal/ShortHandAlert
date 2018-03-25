@@ -118,6 +118,11 @@ Add `github "mironal/ShortHandAlert` to you Cartfile.
 github "mironal/ShortHandAlert"
 ```
 
+Don't forget.
+
+![carthage1](https://raw.githubusercontent.com/mironal/ShortHandAlert/master/doc_resources/carthage1.png)
+![carthage2](https://raw.githubusercontent.com/mironal/ShortHandAlert/master/doc_resources/carthage2.png)
+
 ## Demo
 
 ### for Swift
