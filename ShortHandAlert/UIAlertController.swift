@@ -18,7 +18,7 @@ private extension UIAlertController {
 
 public extension UIAlertController {
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .default, handler: handler))`.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .default, handler: handler))`.
     ///
     /// ```
     /// let alert = // create alert or actionSheet
@@ -39,11 +39,11 @@ public extension UIAlertController {
         return addAction(title, style: .default, handler: handler)
     }
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .default, handler: handler))`.
-    /// This method is useful for .alert style. it contains TextFields in handler.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .default, handler: handler))`.
+    /// This method is useful for the .alert style. It contains TextFields in the handler.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert.
     /// alert.default("title")
     /// // or
     /// alert.default("title"){ (action, textFields) in
@@ -61,10 +61,10 @@ public extension UIAlertController {
         return `default`(title) { handler?($0, self.textFields) }
     }
 
-    /// A short hand of `default("OK", handler: handler)`.
+    /// A shorthand of `default("OK", handler: handler)`.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert or an actionSheet.
     /// alert.ok()
     /// // or
     /// alert.ok { action in
@@ -80,10 +80,10 @@ public extension UIAlertController {
     }
 
     /// A short hand of `default("OK", handler: handler)`.
-    /// This method is useful for .alert style. it contains TextFields in handler.
+    /// This method is useful for the .alert style. It contains TextFields in the handler.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert.
     /// alert.ok()
     /// // or
     /// alert.ok { (action, textFields) in
@@ -99,10 +99,10 @@ public extension UIAlertController {
         return `default`("OK", handler: handler)
     }
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert or an actionSheet.
     /// alert.cancel()
     /// // or
     /// alert.cancel("title")
@@ -112,7 +112,7 @@ public extension UIAlertController {
     /// }
     /// ```
     /// - Parameters:
-    ///   - title: The text for the action button title. Default is "Cancel".
+    ///   - title: The text for the action button title. The default value is "Cancel".
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
@@ -121,11 +121,11 @@ public extension UIAlertController {
         return addAction(title, style: .cancel, handler: handler)
     }
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
-    /// This method is useful for .alert style. it contains TextFields in handler.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
+    /// This method is useful for the .alert style. It contains TextFields in the handler.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert.
     /// alert.cancel()
     /// // or
     /// alert.cancel("title")
@@ -136,7 +136,7 @@ public extension UIAlertController {
     /// ```
     ///
     /// - Parameters:
-    ///   - title: The text for the action button title. Default is "Cancel".
+    ///   - title: The text for the action button title. The default value is "Cancel".
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
@@ -145,7 +145,7 @@ public extension UIAlertController {
         return cancel(title) { handler?($0, self.textFields) }
     }
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
@@ -157,8 +157,8 @@ public extension UIAlertController {
         return addAction(title, style: .destructive, handler: handler)
     }
 
-    /// A short hand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
-    /// This method is useful for .alert style. it contains TextFields in handler.
+    /// A shorthand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
+    /// This method is useful for the .alert style. It contains TextFields in the handler.
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
@@ -173,7 +173,7 @@ public extension UIAlertController {
     /// Present the alert on a given view controller.
     ///
     /// ```
-    /// let alert = // create alert or actionSheet
+    /// let alert = // Create an alert or an actionSheet.
     /// alert.present(in: viewController)
     /// // or
     /// alert.present(in: self, animated: true) {
@@ -188,10 +188,10 @@ public extension UIAlertController {
         vc.present(self, animated: flag, completion: completion)
     }
 
-    /// A short hand of `addTextField(configurationHandler:)`
+    /// A shorthand of `addTextField(configurationHandler:)`
     ///
     /// ```
-    /// let alert = // create alert
+    /// let alert = // Create an alert.
     /// alert.textField { textField in
     ///  configure textField.
     /// }
@@ -205,11 +205,11 @@ public extension UIAlertController {
         return self
     }
 
-    /// A short hand of `addTextField(configurationHandler:)`.
+    /// A shorthand of `addTextField(configurationHandler:)`.
     /// This method is useful if you only want to set default text or placeholders in a TextField.
     ///
     /// ```
-    /// let alert = // create alert
+    /// let alert = // Create an alert.
     /// alert.textField("default text", placeholder: "placeholder")
     /// ```
     ///

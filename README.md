@@ -1,4 +1,4 @@
-# ShortHandAlert :memo: :dash:
+# ShortHandAlert 📝💨
 
 A very simple extension of UIAlertController for shortening your source.
 
@@ -13,7 +13,7 @@ let alert = UIAlertController(title: "title", message: nil, preferredStyle: .act
 
 // I want...
 
-// How many times have you written this UIAlertAction in your whole life? 😭😭
+// How many times have you written this UIAlertAction in my whole life? 😭😭
  alert.addAction(UIAlertAction(title: "Some", style: .default, handler: { _ in
      print("do some thing...")
  }))
@@ -78,6 +78,31 @@ UIAlertController(title: "Alert title", message: "some message.", preferredStyle
     .present(in: self)
 ```
 
+### Alert Builder
+
+AlertBuilder makes it easy to create commonly used alerts.
+
+```swift
+AlertBuilder()
+    .confirm(title: nil, message: "Some message") // or .confirm(error: error)
+    .approve()
+    .present(in: self)
+```
+
+```swift
+AlertBuilder()
+    .suggest(title: nil, message: "Do you want to retry?") // or .suggest(error: error)
+    .cancel()
+    .approve(title: "Retry") { _ in
+
+    }
+    .present(in: self)
+```
+
+#### Using AlertBuilder makes the suggestion of completion very concise.
+
+![AlertBuilder gif](./doc_resources/AlertBuilder.gif)
+
 ## Requirements
 
 - iOS 9.3+
@@ -102,3 +127,5 @@ see `/Demo` directory.
 ### for Objective-c
 
 see `/DemoObjc` directory.
+
+![Demo](./doc_resources/Demo.gif)

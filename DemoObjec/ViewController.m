@@ -31,6 +31,11 @@
     [alert textField:nil placeholder:nil];
     [alert textField:nil];
     [alert presentIn:self animated:YES completion:nil];
+
+
+    AlertBuilder *builder = [AlertBuilder.alloc init];
+    [[[builder confirmWithTitle:nil message:nil] approve] presentIn:self];
+    [[[[builder suggestWithTitle:nil message:nil] cancel] approve] presentIn:self];
 }
 
 @end

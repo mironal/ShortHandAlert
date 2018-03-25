@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EB8340C2062A55F00F1671E /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB8340B2062A55F00F1671E /* AlertBuilder.swift */; };
 		4ED1FC042061E83E00C03D17 /* ShortHandAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED1FBFA2061E83E00C03D17 /* ShortHandAlert.framework */; };
 		4ED1FC092061E83E00C03D17 /* ShortHandAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1FC082061E83E00C03D17 /* ShortHandAlertTests.swift */; };
 		4ED1FC0B2061E83E00C03D17 /* ShortHandAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED1FBFD2061E83E00C03D17 /* ShortHandAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4EB8340B2062A55F00F1671E /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		4ED1FBFA2061E83E00C03D17 /* ShortHandAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortHandAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED1FBFD2061E83E00C03D17 /* ShortHandAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShortHandAlert.h; sourceTree = "<group>"; };
 		4ED1FBFE2061E83E00C03D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				4ED1FBFD2061E83E00C03D17 /* ShortHandAlert.h */,
 				4ED1FBFE2061E83E00C03D17 /* Info.plist */,
 				4ED1FC142061E87400C03D17 /* UIAlertController.swift */,
+				4EB8340B2062A55F00F1671E /* AlertBuilder.swift */,
 			);
 			path = ShortHandAlert;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB8340C2062A55F00F1671E /* AlertBuilder.swift in Sources */,
 				4ED1FC152061E87400C03D17 /* UIAlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
