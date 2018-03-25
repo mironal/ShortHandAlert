@@ -20,7 +20,6 @@ public protocol Present: class {
     ///   - completion: The block to execute after the presentation finishes.
     func present(in vc: UIViewController, animated flag: Bool, completion: (() -> Void)?)
 
-
     /// Present the alert on a given view controller.
     /// The completion block is nil.
     ///
@@ -99,7 +98,6 @@ extension UIAlertController: Approve {
 @objc
 public protocol DestructiveApprove {
 
-
     /// Add a destructive action like "Destroy" and returns a presentable object.
     ///
     /// - Parameters:
@@ -125,13 +123,11 @@ public protocol Cancel {
     /// - Returns: An approvable object.
     func cancel() -> Approve & DestructiveApprove
 
-
     /// Add cancel action for alert and returns approvable object.
     ///
     /// - Parameter title: The title of the action.
     /// - Returns: An approvable object.
     func cancel(title: String) -> Approve & DestructiveApprove
-
 
     /// Add cancel action for alert and returns approvable object.
     /// The title of the action is "Cancel".
@@ -139,7 +135,6 @@ public protocol Cancel {
     /// - Parameter handler: A block to execute when the user selects the action.
     /// - Returns: An approvable object.
     func cancel(_ handler: @escaping ((UIAlertAction) -> Void)) -> Approve & DestructiveApprove
-
 
     /// Add cancel action for alert and returns approvable object.
     ///
@@ -168,7 +163,6 @@ extension UIAlertController: Cancel {
         return cancel(title, handler: handler)
     }
 }
-
 
 /// A builder object that makes familiar alert easily.
 @objcMembers

@@ -59,7 +59,6 @@ class ViewController: UIViewController {
             .present(in: self)
     }
 
-
     @IBAction func pushAlert3(_ sender: Any) {
 
         let error = NSError(domain: "",
@@ -70,7 +69,6 @@ class ViewController: UIViewController {
         .approve()
         .present(in: self)
     }
-
 
     @IBAction func pushAlert4(_ sender: Any) {
         let error: Error = NSError(domain: "", code: 0, userInfo: nil)
