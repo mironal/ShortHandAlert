@@ -101,7 +101,7 @@ AlertBuilder()
 
 #### Using AlertBuilder makes the suggestion of completion very concise.
 
-![AlertBuilder gif](./doc_resources/AlertBuilder.gif)
+![AlertBuilder gif](https://raw.githubusercontent.com/mironal/ShortHandAlert/master/doc_resources/AlertBuilder.gif)
 
 ## Requirements
 
@@ -128,4 +128,8 @@ see `/Demo` directory.
 
 see `/DemoObjc` directory.
 
-![Demo](./doc_resources/Demo.gif)
+![Demo](https://raw.githubusercontent.com/mironal/ShortHandAlert/master/doc_resources/Demo.gif)
+
+## API document
+
+[The API Document is Here](https://mironal.github.io/ShortHandAlert/)
