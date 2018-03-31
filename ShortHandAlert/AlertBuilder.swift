@@ -8,6 +8,9 @@
 
 import Foundation
 
+// This class prevents UIAlertController methods getting too many.
+private final class Shadow: UIAlertController {}
+
 /// Declare a method to present alert to the view controller.
 @objc
 public protocol Present: class {
@@ -35,7 +38,7 @@ public protocol Present: class {
     func present(in vc: UIViewController)
 }
 
-extension UIAlertController: Present {
+extension Shadow: Present {
 
     public func present(in vc: UIViewController, animated flag: Bool) {
         present(in: vc, animated: flag) {}
@@ -76,7 +79,7 @@ public protocol Approve: class {
     func approve(title: String, handler: @escaping ((UIAlertAction) -> Void)) -> Present
 }
 
-extension UIAlertController: Approve {
+extension Shadow: Approve {
 
     public func approve() -> Present {
         return approve(title: "OK")
@@ -107,7 +110,7 @@ public protocol DestructiveApprove {
     func destructiveApprove(title: String, handler: @escaping ((UIAlertAction) -> Void)) -> Present
 }
 
-extension UIAlertController: DestructiveApprove {
+extension Shadow: DestructiveApprove {
     public func destructiveApprove(title: String, handler: @escaping ((UIAlertAction) -> Void)) -> Present {
         return destructive(title, handler: handler)
     }
@@ -145,7 +148,7 @@ public protocol Cancel {
     func cancel(title: String, handler: @escaping ((UIAlertAction) -> Void)) -> Approve & DestructiveApprove
 }
 
-extension UIAlertController: Cancel {
+extension Shadow: Cancel {
 
     public func cancel() -> Approve & DestructiveApprove {
         return cancel(title: "Cancel")
@@ -197,7 +200,7 @@ public class AlertBuilder: NSObject {
     /// - Returns: An approvable object.
     @objc
     public func confirm(title: String? = nil, message: String?) -> Approve {
-        return UIAlertController(title: title, message: message, preferredStyle: .alert)
+        return Shadow(title: title, message: message, preferredStyle: .alert)
     }
 
     /// Creates and returns a builder for a confirmable alert builder.
@@ -259,7 +262,7 @@ public class AlertBuilder: NSObject {
     ///   - message: The message to display to the user.
     /// - Returns: A cancelable object.
     public func suggest(title: String?, message: String?) -> Cancel {
-        return UIAlertController(title: title, message: message, preferredStyle: .alert)
+        return Shadow(title: title, message: message, preferredStyle: .alert)
     }
 
     /// Creates and returns a builder for a suggestable alert.
