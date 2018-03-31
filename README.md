@@ -78,6 +78,19 @@ UIAlertController(title: "Alert title", message: "some message.", preferredStyle
     .present(in: self)
 ```
 
+### Conditional add action
+
+https://github.com/mironal/ShortHandAlert/issues/6
+
+```swift
+UIAlertController(title: "Alert title", message: nil, preferredStyle: .alert)
+    .default("with action handler", addAction: true) { _ in }
+    .ok(addAction: true) { _ in }
+    .destructive("with action handler", addAction: true) { _ in }
+    .cancel(addAction: true)
+    .present(in: self)
+```
+
 ### Alert Builder
 
 AlertBuilder makes it easy to create commonly used alerts.
