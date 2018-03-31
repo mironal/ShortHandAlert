@@ -20,18 +20,21 @@
     [super viewDidLoad];
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"tltle" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [alert default:@"" handler:nil];
-    [alert default:@"" handlerWithTextField:nil];
-    [alert cancel:@"" handler:nil];
-    [alert cancel:@"" handlerWithTextField:nil];
-    [alert ok:nil];
-    [alert okWithTextField:nil];
-    [alert destructive:@"" handler:nil];
-    [alert destructive:@"" handlerWithTextField:nil];
-    [alert textField:nil placeholder:nil];
-    [alert textField:nil];
-    [alert presentIn:self animated:YES completion:nil];
 
+    [alert default:@"" addAction:YES handler:nil];
+    [alert default:@"" addAction:YES handlerWithTextField:nil];
+
+    [alert okToAddAction:YES handler:nil];
+    [alert okToAddAction:YES handlerWithTextField:nil];
+
+
+    [alert cancel:@"" addAction:YES handler:nil];
+    [alert cancel:@"" toAddAction:YES handlerWithTextField:nil];
+
+    [alert destructive:@"" addAction:YES handler:nil];
+    [alert destructive:@"" toAddAction:YES handlerWithTextField:nil];
+
+    [alert presentIn:self animated:YES completion:nil];
 
     AlertBuilder *builder = [AlertBuilder.alloc init];
     [[[builder confirmWithTitle:nil message:nil] approve] presentIn:self];

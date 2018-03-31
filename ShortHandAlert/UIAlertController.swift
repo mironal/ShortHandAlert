@@ -10,8 +10,22 @@ import UIKit
 
 private extension UIAlertController {
 
-    func addAction(_ title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)?) -> Self {
+    func addAction(_ title: String?, style: UIAlertActionStyle, addAction condition: Bool, handler: ((UIAlertAction) -> Void)?) -> Self {
+
+        guard condition else {
+            return self
+        }
+
+        if style == .cancel && actions.contains { $0.style == style } {
+            #if DEBUG
+                print("* Warning**: Ignored the addition of action that titled \"\(title ?? "<no name>")\", because UIAlertController can only have one action of cancel style.")
+            #endif
+
+            return self
+        }
+
         addAction(UIAlertAction(title: title, style: style, handler: handler))
+
         return self
     }
 }
@@ -27,16 +41,21 @@ public extension UIAlertController {
     /// alert.default("title"){ action in
     ///   // do something.
     /// }
+    /// // or
+    /// alert.default("title", add: true) { action in
+    ///   // do something.
+    /// }
     /// ```
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
     @objc
-    public func `default`(_ title: String?, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
-        return addAction(title, style: .default, handler: handler)
+    public func `default`(_ title: String?, addAction condition: Bool = true, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
+        return addAction(title, style: .default, addAction: condition, handler: handler)
     }
 
     /// A shorthand of `addAction(UIAlertAction(title: title, style: .default, handler: handler))`.
@@ -53,12 +72,13 @@ public extension UIAlertController {
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
-    @objc(`default`:handlerWithTextField:)
-    public func `default`(_ title: String?, handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
-        return `default`(title) { handler?($0, self.textFields) }
+    @objc(default:addAction:handlerWithTextField:)
+    public func `default`(_ title: String?, addAction condition: Bool = true, handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
+        return `default`(title, addAction: condition) { handler?($0, self.textFields) }
     }
 
     /// A shorthand of `default("OK", handler: handler)`.
@@ -71,12 +91,14 @@ public extension UIAlertController {
     ///   // do something.
     /// }
     /// ```
-    /// - Parameter handler: A block to execute when the user selects the action.
+    /// - Parameters:
+    ///   - condition: Add the action when true. The default value is true.
+    ///   - handler: handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
-    @objc
-    public func ok(_ handler: ((UIAlertAction) -> Void)? = nil) -> Self {
-        return `default`("OK", handler: handler)
+    @objc(okToAddAction:handler:)
+    public func ok(addAction condition: Bool = true, _ handler: ((UIAlertAction) -> Void)? = nil) -> Self {
+        return `default`("OK", addAction: condition, handler: handler)
     }
 
     /// A short hand of `default("OK", handler: handler)`.
@@ -91,12 +113,14 @@ public extension UIAlertController {
     /// }
     /// ```
     ///
-    /// - Parameter handler: A block to execute when the user selects the action.
+    /// - Parameters:
+    ///   - condition: Add the action when true. The default value is true.
+    ///   - handler: handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
-    @objc(okWithTextField:)
-    public func ok(_ handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
-        return `default`("OK", handler: handler)
+    @objc(okToAddAction:handlerWithTextField:)
+    public func ok(addAction condition: Bool = true, _ handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
+        return `default`("OK", addAction: condition, handler: handler)
     }
 
     /// A shorthand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
@@ -113,12 +137,13 @@ public extension UIAlertController {
     /// ```
     /// - Parameters:
     ///   - title: The text for the action button title. The default value is "Cancel".
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
     @objc
-    public func cancel(_ title: String? = "Cancel", handler: ((UIAlertAction) -> Void)? = nil) -> Self {
-        return addAction(title, style: .cancel, handler: handler)
+    public func cancel(_ title: String? = "Cancel", addAction condition: Bool = true, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
+        return addAction(title, style: .cancel, addAction: condition, handler: handler)
     }
 
     /// A shorthand of `addAction(UIAlertAction(title: title, style: .cancel, handler: handler))`.
@@ -137,24 +162,26 @@ public extension UIAlertController {
     ///
     /// - Parameters:
     ///   - title: The text for the action button title. The default value is "Cancel".
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
-    @objc(cancel:handlerWithTextField:)
-    public func cancel(_ title: String? = "Cancel", handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
-        return cancel(title) { handler?($0, self.textFields) }
+    @objc(cancel:toAddAction:handlerWithTextField:)
+    public func cancel(_ title: String? = "Cancel", addAction condition: Bool = true, handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
+        return cancel(title, addAction: condition) { handler?($0, self.textFields) }
     }
 
     /// A shorthand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
     @objc
-    public func destructive(_ title: String?, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
-        return addAction(title, style: .destructive, handler: handler)
+    public func destructive(_ title: String?, addAction condition: Bool = true, handler: ((UIAlertAction) -> Void)? = nil) -> Self {
+        return addAction(title, style: .destructive, addAction: condition, handler: handler)
     }
 
     /// A shorthand of `addAction(UIAlertAction(title: title, style: .destructive, handler: handler))`.
@@ -162,12 +189,13 @@ public extension UIAlertController {
     ///
     /// - Parameters:
     ///   - title: The text for the action button title.
+    ///   - condition: Add the action when true. The default value is true.
     ///   - handler: A block to execute when the user selects the action.
     /// - Returns: An instance of itself.
     @discardableResult
-    @objc(destructive:handlerWithTextField:)
-    public func destructive(_ title: String?, handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
-        return destructive(title) { handler?($0, self.textFields) }
+    @objc(destructive:toAddAction:handlerWithTextField:)
+    public func destructive(_ title: String?, addAction condition: Bool = true, handler: ((UIAlertAction, [UITextField]?) -> Void)?) -> Self {
+        return destructive(title, addAction: condition) { handler?($0, self.textFields) }
     }
 
     /// Present the alert on a given view controller.
@@ -197,11 +225,16 @@ public extension UIAlertController {
     /// }
     /// ```
     ///
-    /// - Parameter configurationHandler: A block for configuring the text field prior to displaying the alert.
+    /// - Parameters:
+    ///   - condition: Add the action when true. The default value is true.
+    ///   - configurationHandler: A block for configuring the text field prior to displaying the alert.
+    /// - Returns: An instance of itself.
     @discardableResult
     @objc
-    public func textField(_ configurationHandler: ((UITextField) -> Void)? = nil) -> Self {
-        addTextField(configurationHandler: configurationHandler)
+    public func textField(addTextField condition: Bool = true, _ configurationHandler: ((UITextField) -> Void)? = nil) -> Self {
+        if condition {
+            addTextField(configurationHandler: configurationHandler)
+        }
         return self
     }
 
@@ -214,12 +247,14 @@ public extension UIAlertController {
     /// ```
     ///
     /// - Parameters:
+    ///   - condition: Add the action when true. The default value is true.
     ///   - defaultText: The text for TextField.
     ///   - placeholder: the text for TextField placeholder.
+    /// - Returns: An instance of itself.
     @discardableResult
     @objc
-    public func textField(_ defaultText: String? = nil, placeholder: String? = nil) -> Self {
-        return textField { textField in
+    public func textField(addTextField condition: Bool = true, _ defaultText: String? = nil, placeholder: String? = nil) -> Self {
+        return textField(addTextField: condition) { textField in
             textField.placeholder = placeholder
             textField.text = defaultText
         }
